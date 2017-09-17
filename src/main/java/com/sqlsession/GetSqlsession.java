@@ -9,18 +9,18 @@ import java.io.IOException;
 import java.io.Reader;
 
 public class GetSqlsession {
-    public static SqlSessionFactory sqlSessionFactory;
-    private static void ceshi() {
+    public static SqlSessionFactory sessionFactory;
+    static {
         try {
             Reader reader = Resources.getResourceAsReader("dp.xml");
-             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-
+            sessionFactory = new SqlSessionFactoryBuilder().build(reader);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
-    public static SqlSession getSqlSession(){
-        ceshi();
-        return  sqlSessionFactory.openSession();
+
+    public static SqlSession getSession(){
+        return sessionFactory.openSession();
     }
 }

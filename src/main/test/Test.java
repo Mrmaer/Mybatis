@@ -1,3 +1,5 @@
+
+
 import com.bean.Bean;
 import com.mapper.Useperson;
 import com.sqlsession.GetSqlsession;
@@ -7,8 +9,8 @@ import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        SqlSession sqlSession = GetSqlsession.getSqlSession();
-        Useperson mapper= sqlSession.getMapper(Useperson.class);
+        SqlSession sqlSession = GetSqlsession.getSession();
+        Useperson mapper = sqlSession.getMapper(Useperson.class);
         try {
             List<Bean> person= mapper.all();
             for (Bean p : person){

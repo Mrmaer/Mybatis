@@ -21,6 +21,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="Useperson.xml"/>
+        <!--<mapper resource="Useperson.xml"/>-->
+        <package name="com.mapper"/>
     </mappers>
 </configuration>
