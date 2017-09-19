@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.Useperson">
-    <select id="all" resultType="Bean">
-        SELECT * FROM person
+
+    <resultMap id="jihe" type="Usebean">
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+    </resultMap>
+
+    <sql id="pe">
+        person
+    </sql>
+
+    <sql id="dou">
+        ${Usebean}.name,${Usebean}.sex
+    </sql>
+
+    <insert id="into">
+        INSERT INTO <include refid="pe"/> (name,sex) VALUES (#{name},#{sex})
+    </insert>
+
+
+
+    <update id="update">
+        UPDATE person set name = (#{newname}) where name = #{oldname}
+    </update>
+    <delete id="delete" parameterType="String">
+        DELETE FROM person WHERE name = #{name}
+    </delete>
+
+    <select id="all" resultType="com.bean.Bean">
+        SELECT * FROM <include refid="pe"/>
+    </select>
+
+    <select id="selectone" parameterType="String" resultMap="jihe">
+        SELECT
+         <include refid="dou">
+             <property name="Usebean" value="r"/>
+         </include>
+
+         FROM person r  WHERE `name` = (#{name})
+    </select>
+
+    <select id="selecttwo" parameterType="map" resultType="Usebean">
+        SELECT * FROM person WHERE `name` = (#{name}) and sex = (#{sex})
+    </select>
+
+    <select id="select" resultType="Usebean">
+    SELECT * FROM person WHERE `name` = (#{name}) and sex = (#{sex})
+    </select>
+
+    <select id="selectBean" resultType="Usebean">
+       SELECT * FROM person WHERE `name` = (#{be.name}) and sex = (#{be.sex})
+    </select>
+
+    <select id="selectbean" parameterType="com.bean.Bean" resultType="Usebean">
+      SELECT * FROM person WHERE `name` = (#{name}) and sex = (#{sex})
     </select>
 
 </mapper>

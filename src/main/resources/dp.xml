@@ -6,7 +6,7 @@
 
     <properties resource="mysql.properties"></properties>
     <typeAliases>
-        <package name="com.bean"/>
+        <typeAlias  alias="Usebean" type="com.bean.Bean"/>
     </typeAliases>
 
     <environments default="development">
@@ -22,7 +22,8 @@
     </environments>
 
     <mappers>
-        <package name="com.mapper"/>
-        <!--<mapper resource="UsePer.xml"/>-->
+        <!--<package name="com.mapper"/>-->
+        <mapper resource="Useperson.xml"/>
+        <!--<mapper class="com.mapper.Useperson"/>-->
     </mappers>
 </configuration>
